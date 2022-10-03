@@ -3,9 +3,10 @@ let arraysumes=[];
 let arrayrestes=[];
 let arraymultiplicacions=[];
 let arraydivisions=[];
-let sortir=' ';
+let sortir=true;
 let sortir2=' ';
 var i=0;
+var trobat=false;
 
 do{
   do{
@@ -18,6 +19,7 @@ do{
       }
   }while(sortir==true);  
   
+  sortir=true;
   i=0;
 
   function suma(){
@@ -65,7 +67,7 @@ do{
     arrayrestes.push(resta.apply(this, arguments).toFixed(3));
     arraymultiplicacions.push(multiplicacio.apply(this, arguments).toFixed(3));
     arraydivisions.push(divisio.apply(this, arguments).toFixed(3));
-
+    trobat=true;
   } 
 
   arrel = a => {
@@ -85,11 +87,13 @@ if (sortir2==true){
 }
 }while(sortir2==true);
 
-if (arrayArguments.length>1 && (!isNaN(arrayArguments[0]))){
+if (trobat==true){
   alert(`RESULTATS ACUMULATS DE LA SESSIÓ: 
   \n SUMES: ${arraysumes.join(" | ")} 
   \n RESTES: ${arrayrestes.join(" | ")} 
   \n MULTIPLICACIONS: ${arraymultiplicacions.join(" | ")} 
   \n DIVISIONS: ${arraydivisions.join(" | ")}`);
   alert(`FINS AVIAT!`);
+}else{
+  alert('FINS AVIAT!');
 }
