@@ -5,18 +5,18 @@ let arraymultiplicacions=[];
 let arraydivisions=[];
 let sortir=' ';
 let sortir2=' ';
-i=0;
+var i=0;
 
 do{
   do{
       arrayArguments[i] = parseFloat(prompt("Introdueix el nombre: "+(i+1)), 10);
       if (isNaN(arrayArguments[i])){
-        (alert(`Dada número ${i+1} dada introduïda no és un nombre... torna-ho a intentar.`));
+        (alert(`Dada número ${i+1} introduïda no és un nombre... torna-ho a intentar.`));
       }else{
         i++;
-        sortir = prompt("Has acabat d'introduïr arguments? s = si , n = no");
+        sortir = confirm("Vols introduïr més elements?\n-SI (Prem acceptar)\n-NO (Prem cancelar)");
       }
-  }while(sortir=='n');  
+  }while(sortir==true);  
   
   i=0;
 
@@ -68,17 +68,28 @@ do{
 
   } 
 
+  arrel = a => {
+    return (Math.sqrt(a).toFixed(3));
+  }
+  
+
+if (arrayArguments.length==1 && (!isNaN(arrayArguments[i]))){
+alert (`L'arrel cuadrada del nombre introduït és: ${arrel(arrayArguments[i])}`)
+}else if (arrayArguments.length!==1 && (!isNaN(arrayArguments[i]))){
 calculadora.apply(this,arrayArguments);
-sortir2 = prompt("Vols començar de nou amb altres nombres? s = si , n = no");
-}while(sortir2=='s');
+}
 
-alert(`RESULTATS ACUMULATS DE LA SESSIÓ: 
-\n SUMES: ${arraysumes.join(" | ")} 
-\n RESTES: ${arrayrestes.join(" | ")} 
-\n MULTIPLICACIONS: ${arraymultiplicacions.join(" | ")} 
-\n DIVISIONS: ${arraydivisions.join(" | ")}`)
+sortir2 = confirm("Vols començar de nou amb altres nombres?\n-SI (Prem acceptar)\n-NO (Prem cancelar)");
+if (sortir2==true){
+  arrayArguments=[];
+}
+}while(sortir2==true);
 
-alert ("FINS AVIAT!");
-
-
-
+if (arrayArguments.length>1 && (!isNaN(arrayArguments[0]))){
+  alert(`RESULTATS ACUMULATS DE LA SESSIÓ: 
+  \n SUMES: ${arraysumes.join(" | ")} 
+  \n RESTES: ${arrayrestes.join(" | ")} 
+  \n MULTIPLICACIONS: ${arraymultiplicacions.join(" | ")} 
+  \n DIVISIONS: ${arraydivisions.join(" | ")}`);
+  alert(`FINS AVIAT!`);
+}
