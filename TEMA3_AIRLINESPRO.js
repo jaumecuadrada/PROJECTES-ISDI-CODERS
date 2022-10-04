@@ -16,7 +16,12 @@ var nomusuari=' ';
 
 function airlines(){
   if (nomusuari==' '){
+    do{
     nomusuari = prompt ("Introdueix el teu nom: ");
+    if (nomusuari=='' || nomusuari==null){
+      alert('No has introduït cap nom. Torna-ho a intentar.')
+    }
+    }while (nomusuari=='' || nomusuari==null);
     alert (`Benvingut ${nomusuari}!`);
     menu();
   }else{
@@ -117,7 +122,15 @@ function usuari(){
   let sortir;
   let trobat=false;
   do{
-    preu= prompt('Introdueix la quantitat mínima en dolars que vols gastar: ');
+    do{
+    preu= parseInt (prompt('Introdueix la quantitat màxima en dolars que vols gastar: '));
+    console.log('tipus de dada'+ typeof preu);
+    if (isNaN(preu) || preu==null){
+      alert('No has introduit un nombre, torna-hi sisplau.')
+      console.log('tipus de dada '+ typeof preu);
+      console.log('preu'+preu);
+    }
+    }while (isNaN(preu) || preu==null);
     alert (`A continuació et mostrem tots els vols disponibles amb un preu igual o menor a ${preu} dolars:`)
     for (i=0;i<flights.length;i++){
       if (flights[i].cost<=preu){
@@ -159,9 +172,24 @@ function introduir(){
     //let contador=idmesalta;
     alert(`A continuació introduirás les dades del vol amb ID ${idmesalta+1}. `)
     volnou.id=(idmesalta+1);
-    volnou.to=prompt('Introdueix destinació del vol:');
-    volnou.from=prompt('Introdueix orígen del vol:');
-    volnou.cost=parseInt(prompt('Introdueix cost en dolars del vol:'));
+    do{
+      volnou.to=prompt('Introdueix destinació del vol:');
+      if (volnou.to=='' || volnou.to==null){
+        alert('No has introduït un destí vàlid. Torna-ho a intentar.');
+      }
+    }while (volnou.to=='' || volnou.to==null);
+    do{
+      volnou.from=prompt('Introdueix orígen del vol:');
+      if (volnou.from=='' || volnou.from==null){
+        alert('No has introduït un orígen vàlid. Torna-ho a intentar.');
+      }
+    }while (volnou.from=='' || volnou.from==null);
+    do{
+      volnou.cost=parseInt(prompt('Introdueix cost en dolars del vol:'));
+      if (isNaN(volnou.cost) || volnou.cost==null){
+        alert('No has introduït un nombre vàlid. Torna-ho a intentar');
+      }
+    }while(isNaN(volnou.cost) || volnou.cost==null);
     escales=confirm('El vol fa alguna escala?\n-SI (Prem ACCEPTAR)\n-NO (Prem CANCELAR)');
     if (escales){
       volnou.scale=true;
@@ -179,16 +207,22 @@ function eliminar(){
   let idborrar=0;
   trobat=false;  
   do{
-    idborrar=prompt('Introdueix el ID del vol que desitges borrar.');
-    for (i=0;i<flights.length;i++){
-      if (flights[i].id==idborrar){
-        flights.splice(i,1);
-        trobat=true;
+    do{
+    idborrar=parseInt(prompt('Introdueix el ID del vol que desitges borrar.'));
+    if (isNaN(idborrar) || idborrar==null){
+      alert ('No has introduït un nombre. Torna-ho a intentar.')
+    }else{
+      for (i=0;i<flights.length;i++){
+        if (flights[i].id==idborrar){
+          flights.splice(i,1);
+          trobat=true;
+        }
+      }
+      if (trobat==false){
+        alert ('Aquest ID no consta a la nostra base de dades. torna-ho a intentar.'); 
       }
     }
-    if (trobat==false){
-      alert ('Aquest ID no consta a la nostra base de dades. torna-ho a intentar.'); 
-    }
+    }while (isNaN(idborrar) || idborrar==null || trobat==false);
     eliminar=confirm('Vols eliminar més vols?\n-SI (Prem ACCEPTAR)\n-NO (Prem CANCELAR)');
   }while(eliminar==true);
 }
