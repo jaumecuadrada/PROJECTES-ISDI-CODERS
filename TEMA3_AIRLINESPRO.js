@@ -137,7 +137,7 @@ function usuari(){
 }
 
 function introduir(){
-  let escales;
+  let escales=false;
   let continuar;
   let idmesalta=0;
 
@@ -164,9 +164,9 @@ function introduir(){
     volnou.cost=parseInt(prompt('Introdueix cost en dolars del vol:'));
     escales=confirm('El vol fa alguna escala?\n-SI (Prem ACCEPTAR)\n-NO (Prem CANCELAR)');
     if (escales){
-      volnou.scale==true;
-    }else{
-      volnou.scale==false;
+      volnou.scale=true;
+    }else{ 
+      volnou.scale=false;
     }
       flights.push(volnou);
     idmesalta++;
