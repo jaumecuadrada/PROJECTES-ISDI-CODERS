@@ -13,7 +13,7 @@ let usuari = {
 let introduirnombre;
 let sortirprograma=true;
 let arrayrandoms=[];
-let bingoOk=false;
+let bingoOk=false;      
 let torns=0;
 let nomusuari='';
 let trobat1=false;
@@ -133,19 +133,22 @@ function actualitzacartro(){
 }
 
 function noucartro(){
-    let sortir;
+    let sortir='no';
     let contador=1;
     do{        
-        omplircartro();
-        console.log(`⎡‾‾‾‾‾‾‾‾‾‾ CARTRÓ ${contador} ‾‾‾‾‾‾‾‾‾‾⎤`);
-        console.log('⎡‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾⎤');
-        console.log('⎜ '+cartro.slice(0,5).join(" ⎟ ")+'  |');
-        console.log('⎜ '+cartro.slice(5,10).join(" ⎟ ")+'  |');
-        console.log('⎜ '+cartro.slice(10,15).join(" ⎟ ")+'  |');
-        console.log('⎣______________________________⎦\n\n');
+        if (sortir=='no'){
+            omplircartro();
+            console.log(`⎡‾‾‾‾‾‾‾‾‾‾ CARTRÓ ${contador} ‾‾‾‾‾‾‾‾‾‾⎤`);
+            console.log('⎡‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾⎤');
+            console.log('⎜ '+cartro.slice(0,5).join(" ⎟ ")+'  |');
+            console.log('⎜ '+cartro.slice(5,10).join(" ⎟ ")+'  |');
+            console.log('⎜ '+cartro.slice(10,15).join(" ⎟ ")+'  |');
+            console.log('⎣______________________________⎦\n\n');
+            contador++;
+        }
 
-        sortir = confirm ("Prem acceptar si t'agrada aquest cartró o cancelar si vols generar-ne un de nou");
-        if (sortir){
+        sortir = prompt (`T'agrada aquest cartró?\n-SI (escriu 'si')\n-NO, en vull un altre! (escriu 'no')`);
+        if (sortir=='si'){
             console.clear();
             console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺`);
             console.log (`---------------- BINGO ISDICODERS ----------------`);
@@ -157,15 +160,16 @@ function noucartro(){
             console.log('⎜ '+cartro.slice(5,10).join(" ⎟ ")+'  |');
             console.log('⎜ '+cartro.slice(10,15).join(" ⎟ ")+'  |');
             console.log('⎣______________________________⎦\n\n');
-        }else{
+        }else if (sortir=='no'){
             console.clear();
             console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺`);
             console.log (`      Benvingut al BINGO ISDICODERS ${nomusuari}!`);
             console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺\n\n`);
             console.log('Què tal aquest altre?\n\n');
+        }else{
+            alert('OPCIÓ INCORRECTA, TORNA-HO A INTENTAR!');
         }
-        contador++;
-    }while(!sortir);
+    }while(sortir!='si');
 }
 
 function omplircartro(){
