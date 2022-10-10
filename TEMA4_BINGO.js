@@ -148,6 +148,9 @@ function noucartro(){
         }
 
         sortir = prompt (`T'agrada aquest cartró?\n-SI (escriu 'si')\n-NO, en vull un altre! (escriu 'no')`);
+        if (sortir!==null){
+            sortir = sortir.toLowerCase();
+        }
         if (sortir=='si'){
             console.clear();
             console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺`);
