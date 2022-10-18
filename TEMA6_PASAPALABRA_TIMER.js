@@ -135,7 +135,6 @@ let end=false;
 let fitemps=false;
 let aux;
 let temps;
-
 let questions = [];
 
 const temporitzador = () => {
@@ -152,7 +151,7 @@ const generapreguntes = () => {
   }
 }
   
-demananom = () =>{
+let demananom = () =>{
   do{
     nomusuari = prompt ("Introdueix el teu nom: ");
     if (nomusuari=='' || nomusuari==null){
@@ -161,7 +160,7 @@ demananom = () =>{
 }while (nomusuari=='' || nomusuari==null);
 }
 
-preguntes = () =>{
+let preguntes = () =>{
 let i=0;
 contadorencerts=0;
 contadorfallos=0;
@@ -174,8 +173,7 @@ console.log("BENVINGUT/DA AL PASAPALABRA ISDICODERS "+nomusuari.toUpperCase()+" 
 console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺`);
 alert("NORMES DEL JOC:\n- TENS 120 SEGONS PER CONTESTAR TOTES LES PREGUNTES, UN COPS PASSATS S'ACABA EL JOC.\n- SI ESCRIUS 'pasapalabra' PASES A LA SEGÜENT LLETRA. \n- SI ESCRIUS 'end' ABANDONES EL JOC.");
 alert("COMENCEM!");
-temps=temporitzador();
-console.log(temps);    
+temps=temporitzador();   
     do{ 
         let tempsactual=new Date;
         if (tempsactual<temps){
@@ -210,6 +208,7 @@ console.log(temps);
                 i++;
                 contadorfallos++;
             }
+            console.log('valor anteriar de i: '+i) 
             if (i==questions.length && contadorencerts!==questions.length){
                 i=0;
             }else if(contadorencerts==questions.length){
@@ -217,6 +216,9 @@ console.log(temps);
             }
             }else{
             i++;
+            }
+            if (i==questions.length && contadorencerts!==questions.length && ((contadorencerts+contadorfallos)!=questions.length)){
+                i=0;
             }  
             aux=i;
             console.clear()
@@ -226,7 +228,7 @@ console.log(temps);
         }else{
             alert("SE T'HA ACABAT EL TEMPS!!!");
             fitemps=true;
-        }
+        } 
     }while(i<questions.length && !end && !fitemps);
 
 if (!end){
@@ -238,7 +240,7 @@ arraypuntuacions.push(temp);
 end=false;
 }
 
-mostraranking = () => {
+let mostraranking = () => {
   arraypuntuacions.sort(((a,b) => b.puntuacio - a.puntuacio));
   console.log('\n');
   console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺`);
@@ -249,14 +251,14 @@ mostraranking = () => {
   console.log (`✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺✺`);
 }
 
-reiniciquestions = () =>{
+let reiniciquestions = () =>{
   for (i=0;i<questions.length;i++){
     questions[i].status=false;
   }
 }
 
 
-pasapalabra = () =>{
+let pasapalabra = () =>{
   demananom();
 
   generapreguntes();
@@ -264,7 +266,7 @@ pasapalabra = () =>{
   console.clear();
   console.log('\n');
   if (aux==27 || fitemps==true){
-    console.log (`${nomusuari.toUpperCase()}, HAS ENCERTAT ${contadorencerts} PARAULES I N'HAS FALLAT ${contadorfallos}!\nFELICITATS, ENTRES AL RANKING.`);  
+    console.log (`${nomusuari.toUpperCase()}, HAS ENCERTAT ${contadorencerts} PARAULES I N'HAS FALLAT ${contadorfallos}!\n\nFELICITATS, ENTRES AL RANKING.`);  
   }else{
     console.log (`${nomusuari.toUpperCase()}, HAS ENCERTAT ${contadorencerts} PARAULES I N'HAS FALLAT ${contadorfallos}!\n\nAL NO HAVER ACABAT EL JOC NO ENTRES AL RANKING!`);
   }
